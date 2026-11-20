@@ -41,7 +41,7 @@ h2 { font-size: clamp(1.8rem, 3.2vw, 2.55rem); font-weight: 740; }
 h3 { font-size: 1.2rem; font-weight: 700; }
 h4 { font-size: 1.12rem; font-weight: 700; }
 a { color: var(--accent); text-underline-offset: .2em; }
-img, video { max-width: 100%; }
+img { max-width: 100%; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 main:focus { outline: none; }
 .container { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
@@ -79,7 +79,7 @@ main:focus { outline: none; }
 .brand { display: inline-flex; align-items: center; gap: .5rem; min-height: 48px; color: var(--ink); font-size: 1.2rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
 .brand img { flex: none; }
 .section-nav { display: flex; align-items: center; gap: 1.4rem; }
-.section-nav a { display: inline-flex; align-items: center; min-height: 48px; color: var(--ink-2); font-weight: 600; text-decoration: none; }
+.section-nav a { display: inline-flex; align-items: center; min-height: 48px; padding-inline: .45rem; color: var(--ink-2); font-weight: 600; text-decoration: none; }
 .section-nav a:hover { color: var(--accent); text-decoration: underline; }
 .btn {
   display: inline-flex;
@@ -125,13 +125,27 @@ main:focus { outline: none; }
 .problem-grid h3 { font-size: 1.35rem; }
 .badge { display: inline-block; padding: .15rem .65rem; border-radius: 99rem; background: var(--accent-soft); color: var(--accent); font-size: 1rem; line-height: 1.65; font-weight: 700; white-space: nowrap; }
 
-.product-shot { min-width: 0; }
+.example { max-width: 980px; margin-inline: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.example-head { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .8rem; padding: 1rem 1.4rem; border-bottom: 1px solid var(--line); font-weight: 650; }
+.example-cols, .example-list li { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 0 1.6rem; padding-inline: 1.4rem; }
+.example-cols { padding-block: .7rem; background: var(--surface-2); color: var(--ink-2); font-weight: 650; }
+.example-list { list-style: none; margin: 0; padding: 0; }
+.example-list li { padding-block: 1.25rem; border-top: 1px solid var(--line); align-items: start; }
+.example-line { padding: .7rem .95rem; background: var(--surface-2); border-radius: var(--radius-s); font-weight: 600; }
+.example-note { padding-left: 1rem; border-left: 3px solid var(--accent); }
+.example-what { font-weight: 700; }
+.example-what + p { margin-top: .3rem; color: var(--ink-2); }
+.example figcaption { padding: 1rem 1.4rem; border-top: 1px solid var(--line); color: var(--ink-2); text-align: center; }
+
+/* 제품 화면은 폰 너비로 찍은 그림이다. 폰에서도 글자가 읽히게 원래 크기(430px)보다 키우지 않는다 */
+.shots { justify-items: center; gap: 2rem 1.5rem; }
+.product-shot { min-width: 0; width: 100%; max-width: 430px; }
+.product-shot h3 { margin-bottom: .9rem; }
+.product-shot a { display: block; border-radius: var(--radius); }
 .product-shot img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 8 / 5;
-  object-fit: contain;
   background: var(--surface-2);
   color: var(--ink-2);
   border: 1px solid var(--line);
@@ -139,10 +153,7 @@ main:focus { outline: none; }
   box-shadow: var(--shadow);
 }
 .product-shot figcaption { padding-top: .85rem; color: var(--ink-2); }
-.hero-shot { max-width: 1060px; margin-inline: auto; }
-.shot-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem 1rem; padding: 1rem 1.2rem; border: 1px solid var(--line); border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0; background: var(--surface); color: var(--ink-2); }
-.hero-shot img { border-top-left-radius: 0; border-top-right-radius: 0; }
-.hero-shot figcaption { text-align: center; }
+.shot-note { margin-top: 1.6rem; text-align: center; }
 .steps { list-style: none; padding: 0; margin: 0 0 2.4rem; }
 .steps li { padding: 0 1.2rem 0 0; }
 .step-number { display: inline-flex; align-items: center; justify-content: center; width: 2.6rem; height: 2.6rem; margin-bottom: 1rem; border-radius: var(--radius-s); background: var(--accent-soft); color: var(--accent); font-weight: 750; }
@@ -179,9 +190,6 @@ tbody th { font-weight: 650; }
 td { color: var(--ink-2); }
 tbody tr:last-child > * { border-bottom: 0; }
 
-.video-container { max-width: 1040px; }
-video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); }
-.video-caption { display: flex; justify-content: space-between; align-items: center; gap: .5rem 1.5rem; flex-wrap: wrap; margin-top: .7rem; }
 .faq-container { max-width: 900px; }
 .faq-list { border-top: 1px solid var(--line); }
 details { border-bottom: 1px solid var(--line); }
@@ -230,14 +238,15 @@ details[open] summary::after { content: "−"; }
   .hero .actions { justify-content: flex-start; }
   .hero .actions .btn { flex: 1 1 auto; }
   .hero-note { margin-top: .9rem; }
-  .hero-shot figcaption { text-align: left; }
-  .shot-heading { padding: .8rem; }
-  .shot-heading > span:last-child { flex-basis: 100%; }
+  .example-head, .example figcaption { padding-inline: 1rem; }
+  .example figcaption { text-align: left; }
+  .example-cols { display: none; }
+  .example-list li { grid-template-columns: minmax(0, 1fr); gap: .8rem; padding-inline: 1rem; }
   .section-head { margin-bottom: 1.7rem; }
   .desktop-break { display: none; }
   .grid-two { grid-template-columns: minmax(0, 1fr); }
   .card { padding: 1.3rem; }
-  .screen-gallery { margin-top: 2.2rem; gap: 1.8rem; }
+  .screen-gallery { margin-top: 2.2rem; }
   .connection-list { gap: 0; }
   .connection-now { padding: 1.25rem; }
   .connection-later { margin-block: 2.2rem; }
