@@ -41,7 +41,7 @@ h2 { font-size: clamp(1.8rem, 3.2vw, 2.55rem); font-weight: 740; }
 h3 { font-size: 1.2rem; font-weight: 700; }
 h4 { font-size: 1.12rem; font-weight: 700; }
 a { color: var(--accent); text-underline-offset: .2em; }
-img { max-width: 100%; }
+img, video { max-width: 100%; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 main:focus { outline: none; }
 .container { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
@@ -190,6 +190,9 @@ tbody th { font-weight: 650; }
 td { color: var(--ink-2); }
 tbody tr:last-child > * { border-bottom: 0; }
 
+.video-container { max-width: 1040px; }
+video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); }
+.video-caption { display: flex; justify-content: space-between; align-items: center; gap: .5rem 1.5rem; flex-wrap: wrap; margin-top: .7rem; }
 .faq-container { max-width: 900px; }
 .faq-list { border-top: 1px solid var(--line); }
 details { border-bottom: 1px solid var(--line); }
